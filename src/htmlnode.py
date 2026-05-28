@@ -23,10 +23,7 @@ class HTMLNODE:
 
         if self.props is None: return ""
 
-        props_str = ''
-        for key, value in self.props.items():
-            
-            props_str += f'''{key}="{value}" '''
+        props_str = " ".join(f'''{key}="{value}"''' for key, value in self.props.items())
 
         return props_str
 
@@ -43,4 +40,26 @@ class HTMLNODE:
 class LeafNode(HTMLNODE):
 
     def __init__(self, tag: str|None, value: str, props: dict[str:str]|None = None):
-        super().__init__(tag, value, props)
+        super().__init__(tag=tag, value=value, props=props)
+
+    def to_html(self):
+        '''returns markup to html depending on tag based on infromation provided'''
+
+        #handle edge cases 
+        if not self.value: raise ValueError #all leafs should have a value
+        if not self.tag: return self.value  #returns raw text
+
+        if self.tag == 'a':
+            return f'''<{self.tag} {self.props_to_html()}>{self.value}</{self.tag}>'''
+
+        else: 
+            return f"<{self.tag}>{self.value}</{self.tag}>"
+
+    def __repr__(self):
+
+        return f"tag=({self.tag}), value=({self.value}), props=({self.props})"
+    
+    def __eq__(self, other):
+
+        return self.tag == other.tag and self.value == other.value and self.props == other.props
+

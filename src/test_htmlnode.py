@@ -31,7 +31,7 @@ class TestTextNode(unittest.TestCase):
         node = HTMLNODE(tag='p',value='test1', props={'href':'google.com'})
         node2 = HTMLNODE(tag='p', value='test1', props={'href':'google.com'}, children=[node])
 
-        self.assertEqual(node.props_to_html(), '''href="google.com" ''')
+        self.assertEqual(node.props_to_html(), '''href="google.com"''')
         self.assertEqual(node.props_to_html(), node2.props_to_html())
 
     def test_eqnot_samedict(self):
@@ -40,6 +40,13 @@ class TestTextNode(unittest.TestCase):
         node2 = HTMLNODE(tag='p', value='test1', props={'href':'bootdev.com'}, children=[node])
 
         self.assertNotEqual(node.props_to_html(), node2.props_to_html())
+
+    def test_eq_large_props(self):
+
+        node = HTMLNODE(tag='p',value='test1', props={'href':'google.com', 'imgsrc':"bootdev.com"})
+        self.assertEqual(node.props_to_html(), '''href="google.com" imgsrc="bootdev.com"''')
+
+
 
 
         
