@@ -1,3 +1,8 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+
 import unittest
 from textnode import TextNode, TextType, text_node_to_html_node
 
@@ -65,7 +70,7 @@ class TestTextNode(unittest.TestCase):
 
     def test_exception(self):
         node = TextNode(text='hello', text_type='p')
-        self.assertRaises(Exception, text_node_to_html_node, node)
+        self.assertRaises(Exception, text_node_to_html_node, node) # passed by args
 
 
 if __name__ == "__main__":
