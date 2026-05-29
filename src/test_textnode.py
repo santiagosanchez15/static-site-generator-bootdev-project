@@ -63,6 +63,10 @@ class TestTextNode(unittest.TestCase):
         new_leaf = text_node_to_html_node(node)
         self.assertEqual(new_leaf.to_html(), "<code>hello</code>")
 
+    def test_exception(self):
+        node = TextNode(text='hello', text_type='p')
+        self.assertRaises(Exception, text_node_to_html_node, node)
+
 
 if __name__ == "__main__":
     unittest.main()
