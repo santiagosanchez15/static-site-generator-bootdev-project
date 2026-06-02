@@ -6,7 +6,7 @@ class TextType(Enum):
     TEXT= 'normal'
     BOLD= '**'
     ITALIC = '_'
-    CODE = "`code text`"
+    CODE = "`"
     LINK = 'link'
     IMAGE= 'image'
 
