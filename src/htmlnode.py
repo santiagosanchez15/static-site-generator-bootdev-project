@@ -19,11 +19,11 @@ class HTMLNODE:
 
         raise NotImplementedError # child classes will override this method
     
-    def props_to_html(self):
-
+    def props_to_html(self) -> str:
+        '''returns join string for values in dictionary'''
         if self.props is None: return ""
 
-        props_str = " ".join(f'''{key}="{value}"''' for key, value in self.props.items())
+        props_str = " ".join(f'''{key}="{value}"''' for key, value in self.props.items()) #builds up string if more than one value joins with " "space 
 
         return props_str
 
@@ -38,7 +38,7 @@ class HTMLNODE:
 
 
 class LeafNode(HTMLNODE):
-
+    '''Node that do not have a children just one case'''
     def __init__(self, tag: str|None, value: str, props: dict[str:str]|None = None):
         super().__init__(tag=tag, value=value, props=props)
 
@@ -50,20 +50,20 @@ class LeafNode(HTMLNODE):
         if not self.tag: return self.value  #returns raw text
 
         if self.tag == 'a':
-            return f'''<{self.tag} {self.props_to_html()}>{self.value}</{self.tag}>'''
+            return f'''<{self.tag} {self.props_to_html()}>{self.value}</{self.tag}>''' #builds up link tag
         
         elif self.tag == 'img':
-            return f'''<{self.tag} {self.props_to_html()}>'''
+            return f'''<{self.tag} {self.props_to_html()}>''' #builds up image tag with given url
 
 
         else: 
-            return f"<{self.tag}>{self.value}</{self.tag}>"
+            return f"<{self.tag}>{self.value}</{self.tag}>" #builds up any other tag
 
     def __repr__(self):
-
+        '''Returns representation of leafnode'''
         return f"tag=({self.tag}), value=({self.value}), props=({self.props})"
     
     def __eq__(self, other):
-
+        '''Cheks equality '''
         return self.tag == other.tag and self.value == other.value and self.props == other.props
 

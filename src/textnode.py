@@ -31,10 +31,11 @@ class TextNode:
         return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
     
 def text_node_to_html_node(text_node: TextNode) -> LeafNode:
-    '''Converts textnode to an leafnode'''
-    if text_node.text_type not in TextType: raise Exception("text type not supported to leaf node")
-    text_dict = {TextType.BOLD: 'b', TextType.ITALIC: 'i', TextType.CODE:"code", TextType.LINK:'a', TextType.IMAGE:'img'}
+    '''Converts textnode to a leafnode'''
+    if text_node.text_type not in TextType: raise Exception("text type not supported to leaf node") #incorrect type given
+    text_dict = {TextType.BOLD: 'b', TextType.ITALIC: 'i', TextType.CODE:"code", TextType.LINK:'a', TextType.IMAGE:'img'} #keep track of tag
 
+    #create leaf depending on cases
     if text_node.text_type == TextType.LINK:
         return LeafNode(tag=text_dict[text_node.text_type], value=text_node.text,props={'href':text_node.url})
     elif text_node.text_type == TextType.IMAGE:

@@ -8,13 +8,13 @@ class PARENTNODE(HTMLNODE):
     
     def to_html(self) -> str:
 
-        if not self.tag: raise ValueError("Missing required tag")
-        if not self.children: raise ValueError("Missing children, list empty")
+        if not self.tag: raise ValueError("Missing required tag") #raise value no tag given
+        if not self.children: raise ValueError("Missing children, list empty") #raise value no children 
 
-        string_html = f"<{self.tag}>"
+        string_html = f"<{self.tag}>" #builds the tag
 
         for children in self.children:
 
-            string_html = string_html + children.to_html()
+            string_html = string_html + children.to_html() #adds children to parent tag
 
-        return string_html + f"</{self.tag}>"
+        return string_html + f"</{self.tag}>" #returns parent tag with children plus closure
