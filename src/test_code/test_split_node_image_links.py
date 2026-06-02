@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-
+#The most imortant thing that i learned form this project is the unit testing and how much it helps you understand how your function works
 import unittest
 from split_node_image_link import split_nodes_image, split_nodes_link
 from textnode import TextType, TextNode
