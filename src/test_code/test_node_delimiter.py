@@ -20,11 +20,11 @@ class TestTextNode(unittest.TestCase):
         node = TextNode("this is a text with a ;google.com; block i really hope it works", TextType.TEXT)
         node2 = TextNode("link block, praying the gods", TextType.LINK, url="google.com")
         new_nodes = split_nodes_delimiter([node, node2], ";", TextType.IMAGE)
-        
-        self.assertEqual(new_nodes[2].text_type, TextType.IMAGE)
-        self.assertEqual(new_nodes[0].text_type, TextType.LINK)
-        self.assertEqual(text_node_to_html_node(new_nodes[2]).to_html(), '''<img src="None" alt="google.com">''')
-        self.assertEqual(text_node_to_html_node(new_nodes[0]).to_html(), '''<a href="google.com">link block, praying the gods</a>''')
+        print(new_nodes)
+        self.assertEqual(new_nodes[1].text_type, TextType.IMAGE)
+        self.assertEqual(new_nodes[3].text_type, TextType.LINK)
+        self.assertEqual(text_node_to_html_node(new_nodes[1]).to_html(), '''<img src="None" alt="google.com">''')
+        self.assertEqual(text_node_to_html_node(new_nodes[3]).to_html(), '''<a href="google.com">link block, praying the gods</a>''')
 
     def test_new_delimiter(self):
 
@@ -34,9 +34,9 @@ class TestTextNode(unittest.TestCase):
         self.assertRaises(Exception, split_nodes_delimiter, [node, node2])
         new_nodes = split_nodes_delimiter([node, node2], '|', TextType.BOLD)
         self.assertNotEqual(new_nodes[2].text_type, TextType.ITALIC)
-        self.assertEqual(new_nodes[2].text_type, TextType.BOLD)
+        self.assertEqual(new_nodes[2].text_type, TextType.TEXT)
         print(new_nodes[0].text_type)
-        self.assertEqual(new_nodes[0].text_type, TextType.LINK)
+        self.assertEqual(new_nodes[0].text_type, TextType.TEXT)
         
 
 

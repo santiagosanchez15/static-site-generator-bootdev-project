@@ -4,11 +4,13 @@ from textnode import text_node_to_html_node, TextNode, TextType
 def split_nodes_delimiter(old_nodes: list[TextNode], delimiter:str, text_type: TextType) -> list[TextNode]:
     '''Splits the node by the delimiter given and returns a list of new nodes'''
 
-    new_list = [node for node in old_nodes if node.text_type != TextType.TEXT]
-    text_nodes = [node for node in old_nodes if node.text_type == TextType.TEXT]
+    new_list = []
 
-    for node in text_nodes:
-        
+    for node in old_nodes:
+        if node.text_type != TextType.TEXT:
+            new_list.append(node)
+            continue
+
         text = node.text.split(delimiter)
         if len(text) % 2 == 0: raise Exception('No closing delimiter was found')
 
