@@ -6,7 +6,7 @@ class BlockType(Enum):
     paragraph= "p"
     heading= "h"
     code = "code" #need to be surrounded with <pre>
-    quote= "blockquote"
+    quote= ""
     unordered_list= "ul" #need to be surrounded with <li>
     ordered_list= "ol" #need to be surrounded with <li>
 
