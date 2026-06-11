@@ -1,14 +1,14 @@
 from enum import Enum
-from markdown_to_blocks import markdown_to_blocks
+
 
 class BlockType(Enum):
 
-    paragraph= "normal"
-    heading= "#"
-    code = "```"
-    quote= ">"
-    unordered_list= "- "
-    ordered_list= "."
+    paragraph= "p"
+    heading= "h"
+    code = "code" #need to be surrounded with <pre>
+    quote= "blockquote"
+    unordered_list= "ul" #need to be surrounded with <li>
+    ordered_list= "ol" #need to be surrounded with <li>
 
 def block_to_block_type(text:str)-> BlockType:
     '''

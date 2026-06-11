@@ -12,7 +12,7 @@ class HTMLNODE:
         '''
         self.tag = tag
         self.value = value
-        self.children = children 
+        self.children = children if children else None
         self.props = props
 
     def add_html(self):
@@ -65,5 +65,7 @@ class LeafNode(HTMLNODE):
     
     def __eq__(self, other):
         '''Cheks equality '''
-        return self.tag == other.tag and self.value == other.value and self.props == other.props
+        return self.tag == other.tag and self.value == other.value and self.props == other
+    
+
 
