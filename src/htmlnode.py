@@ -65,7 +65,7 @@ class LeafNode(HTMLNODE):
     
     def __eq__(self, other):
         '''Cheks equality '''
-        return self.tag == other.tag and self.value == other.value and self.props == other
+        return self.tag == other.tag and self.value == other.value and self.props == other.props
     
 
 
