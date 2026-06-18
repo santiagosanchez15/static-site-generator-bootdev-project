@@ -3,7 +3,7 @@ from extract_title import extract_title
 from os.path import dirname
 from os import makedirs
 
-def generate_page(from_path:str, template_path:str, dest_path:str):
+def generate_page(from_path:str, template_path:str, dest_path:str, basepath:str):
     '''generates page from the start path to the destination path and uses the template path'''
 
     print(f"Generating page from {from_path} to {dest_path} using {template_path}") # print message
@@ -18,6 +18,8 @@ def generate_page(from_path:str, template_path:str, dest_path:str):
     title = extract_title(markdown_content) #get title of page
     template_content = template_content.replace('''{{ Title }}''', f"{title}") #replace title with the one found
     template_content = template_content.replace("""{{ Content }}""", f"{html}") #replace content with the html created
+    template_content = template_content.replace('''href="/''',f'''href="{basepath}''' )
+    template_content = template_content.replace('''src="/''', f'''src="{basepath}''')
 
     directory = dirname(dest_path)
     makedirs(name=directory,exist_ok=True) #Creates directory if doesnt exist, if exists, because of exist_ok then no exceptino raise otherwise raised
